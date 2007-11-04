@@ -57,10 +57,11 @@ function(x,y,test.x,test.y=NULL,loss=c("exponential","logistic"),
   ### Set Up Predictions for each boosting type
   method="class"
   if(type=="discrete"){
-    predict.type<-function(f,dat){
-      a=c(-1,1)[apply(predict(f,newdata=dat,type="prob"),1,which.max)]
-      a
-    }
+	predict.type<-function(f,dat){ 
+	 		p <- predict(f,newdata=dat,type="class") 
+	 		a=as.numeric(levels(p))[p] 
+	 		a 
+ 	}
   }
   if(type=="real"){
     predict.type<-function(f,dat){

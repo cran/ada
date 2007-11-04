@@ -5,7 +5,7 @@ function(formula, data,...,subset,na.action=na.rpart){
   ##m$...=NULL
   ##m =eval(m,parent.frame())
 
-  m <- match.call(expand = FALSE)
+  m <- match.call(expand.dots = FALSE)
   m$model <- m$method <- m$control <- NULL
   m$x <- m$y <- m$parms <- m$... <- NULL
   m$cost <- NULL
