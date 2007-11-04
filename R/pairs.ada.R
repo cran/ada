@@ -57,7 +57,7 @@ function(x,train.data=NULL,vars=NULL,maxvar=10,test.x=NULL,test.y=NULL,test.only
         stop(" test.x must be of type data.frame")
       }
       vars<-names(varplot(x,plot.it=FALSE,type="scores",max.var.show=maxvar))
-      match(vars,val$names)
+      ##match(vars,val$names)
     }else{
       vars<-1:(x$dim[2])
     }

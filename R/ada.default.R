@@ -2,7 +2,7 @@
 function(x,y,test.x,test.y=NULL,loss=c("exponential","logistic"),
          type=c("discrete","real","gentle"),iter=50, nu=0.1, bag.frac=0.5,
          model.coef=TRUE,bag.shift=FALSE,max.iter=20,delta=10^(-10),verbose=FALSE,
-         na.action=na.rpart,...){
+         ...,na.action=na.rpart){
   cl<-match.call(expand.dots=TRUE)
   cl[[1]]<-as.name("ada")
   
@@ -98,7 +98,7 @@ function(x,y,test.x,test.y=NULL,loss=c("exponential","logistic"),
   if(model.coef){
     if(loss=="exponential"){
       if(type=="discrete"){ ### eta is assumed = err
-        coefs=function(eta,pval,yf,alp){
+        coefs=function(wts,eta,yf,alp){
           alp
         }
       }else{
@@ -151,7 +151,7 @@ function(x,y,test.x,test.y=NULL,loss=c("exponential","logistic"),
     }
   }
   lossObj=list(coefs=coefs,wfun=wfun,predict.type=predict.type,method=method,type=type,loss=loss,shift=bag.shift)
-  result =ada.machine(x,ny,test.x,test.y,iter,nu,bag.frac,lossObj,oldObj=NULL,...)
+  result =ada.machine(x,ny,test.x,test.y,iter,nu,bag.frac,lossObj,oldObj=NULL,na.action=na.action,...)
   g=as.factor(lev[as.numeric(as.factor(sign(result$F[[1]])))])
   tab=table(as.factor(y),g,dnn=c("True value","Final Prediction"))
   nm<-1:(dim(x)[2])
@@ -159,7 +159,7 @@ function(x,y,test.x,test.y=NULL,loss=c("exponential","logistic"),
     nm=names(x)
   } 
   obj=structure(list(model=result,fit=g,call=cl,confusion=tab,iter=iter,
-    actual=as.vector(y),nu=nu,dim=dim(x),names=nm,bag.frac=bag.frac),class="ada")
+    actual=as.vector(y),nu=nu,dim=dim(x),names=nm,bag.frac=bag.frac,na.action=na.action),class="ada")
   obj
 }
 

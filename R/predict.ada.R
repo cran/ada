@@ -1,11 +1,13 @@
 "predict.ada" <-
-function(object,newdata=NULL,type=c("vector","prob","both","F"),n.iter=NULL,...){
+function(object,newdata=NULL,type=c("vector","probs","both","F"),n.iter=NULL,...){
   if(!inherits(object,"ada")){
     stop("Error:  Object is not of class ada")
   }
   if(missing(type)){
     type="vector"
   }
+  if(type=="probs")
+    type="prob"
   if(type!="vector" & type!="prob" & type!="both" & type!="F"){
     warning(paste("type=",type," is undefined:  default is 'vector'..  "))
     type="vector"

@@ -6,7 +6,9 @@
 \alias{ada.gentle}
 \alias{ada.real}
 \alias{ada.discrete}
-
+\alias{ada.qtree1}
+\alias{ada.qtree2}
+\alias{ada.predst}
 
 \title{
 Fitting Stochastic Boosting Models
@@ -22,7 +24,7 @@ ada(x,...)
 \method{ada}{default}(x, y,test.x,test.y=NULL, loss=c("exponential","logistic"),
                       type=c("discrete","real","gentle"),iter=50, nu=0.1, bag.frac=0.5,
                       model.coef=TRUE,bag.shift=FALSE,max.iter=20,delta=10^(-10),verbose=FALSE,
-                      na.action=na.rpart,...)
+                      ...,na.action=na.rpart)
 
 \method{ada}{formula}(formula, data, \dots, subset, na.action=na.rpart)
 
@@ -52,7 +54,7 @@ ada(x,...)
                    (Culp et al., 2006).}
   \item{max.iter}{number of iterations to perform in the newton step to determine 
                   the coeficient.}
-  \item{delta}  {tolarence for convergence of the newton step to determine 
+  \item{delta}{tolarence for convergence of the newton step to determine 
                   the coeficient.}
   \item{verbose}{print the number of iterations necessary for convergence of a coeficient.}
   \item{formula}{a symbolic description of the model to be fit.}
@@ -169,7 +171,7 @@ After the model is fit, \sQuote{ada} prints
    Coputational Statistics \& Data Analysis 38.
 
   Culp, M., Johnson, K., Michailidis, G. (2006). \emph{ada: an R Package
-    for Boosting} Journal of Statistical Software.
+    for Stochastic Boosting} Journal of Statistical Software, 16.
 }
 
 \author{

@@ -1,5 +1,5 @@
 "ada.machine" <-
-function(x,y,test.x,test.y,iter=50,nu=0.1,bag.frac=0.5,lossObj,oldObj=NULL,...){
+function(x,y,test.x,test.y,iter=50,nu=0.1,bag.frac=0.5,lossObj,oldObj=NULL,na.action=na.action,...){
   kapstat<-function(tab=diag(2) ){
     if(dim(tab)[1]==1){
       return(0)
@@ -81,7 +81,7 @@ function(x,y,test.x,test.y,iter=50,nu=0.1,bag.frac=0.5,lossObj,oldObj=NULL,...){
     if(!is.null(a)){
       xval=a[,m]
     }
-    fit[[m]] =rpart(y~.,data=dat[xval,],weights=w[xval],method=method,x=FALSE,y=FALSE,...)
+    fit[[m]] =rpart(y~.,data=dat[xval,],weights=w[xval],method=method,x=FALSE,y=TRUE,na.action=na.action,...)
     f<-predict.type(fit[[m]],dat)
     errm=sum(w*(sign(f)!=y))
     if( (1-errm)==1 | errm==1 ){

@@ -3,7 +3,13 @@
 \docType{data}
 \title{ Solubility Data }
 \description{
-	Some description of data
+	A data set that contains information about compounds used in drug discovery. 
+      Specifically, this data set consists of 5631 compounds on which an in-house
+      solubility screen (ability of a compound to dissolve in a water/solvent mixture) was performed. 
+
+     Based on this screen, compounds were categorized as either insoluble (n=3493) or soluble (n=2138).  
+     Then, for each compound, 72 continuous, noisy structural
+     descriptors were computed.  
 }
 \usage{data(soldat)}
 \format{
@@ -80,7 +86,7 @@
     \item{\code{x69}}{a numeric vector}
     \item{\code{x70}}{a numeric vector}
     \item{\code{x71}}{a numeric vector}
-    \item{\code{x72}}{a numeric vector}
+    \item{\code{x72}}{a numeric vector with missing data}
     \item{\code{y}}{a numeric vector}
   }
 }

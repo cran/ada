@@ -12,7 +12,7 @@ a vector of new classes, class probability estimates, or both.
 }
 
 \usage{
-\method{predict}{ada}(object, newdata = NULL, type = c("vector", "prob", "both","F"),n.iter=NULL,\dots)
+\method{predict}{ada}(object, newdata = NULL, type = c("vector", "probs", "both","F"),n.iter=NULL,\dots)
 }
 
 \arguments{
@@ -52,8 +52,7 @@ the ensamble.
     as \sQuote{class}.  The second element returns the class probability estimates 
     and will be labeled as \sQuote{probs}.
   }
-  \item{F}{in the multiclass case when one uses the package to perform 1
-    v.s. all this is used.}
+  \item{F}{this is used in the multiclass case when one uses the package to perform 1 v.s. all.}
 }
 
 \note{
@@ -62,12 +61,9 @@ This function is invoked by the \code{summary}, \code{pairs}, and
 commands then try using this command directly to track possible errors.
 Also, the newdata data set must be of type \sQuote{data.frame} when invoking
 \code{summary}, \code{pairs}, and \code{plot}.
-  }
 }
-
 \seealso{
     \code{\link{ada.default}},\code{\link{summary.ada}},\code{\link{print.ada}},
   \code{\link{plot.ada}},\code{\link{pairs.ada}},\code{\link{update.ada}},\code{\link{addtest}}
-
 }
 \keyword{methods}
