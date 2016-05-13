@@ -20,11 +20,11 @@ as described in \emph{Additive Logistic Regression:  A Statistical
 View of Boosting} by Friedman, et al. (2000).
 }
 \usage{
-ada(x,...)
+ada(x,\dots)
 \method{ada}{default}(x, y,test.x,test.y=NULL, loss=c("exponential","logistic"),
                       type=c("discrete","real","gentle"),iter=50, nu=0.1, bag.frac=0.5,
-                      model.coef=TRUE,bag.shift=FALSE,max.iter=20,delta=10^(-10),verbose=FALSE,
-                      ...,na.action=na.rpart)
+                      model.coef=TRUE,bag.shift=FALSE,max.iter=20,delta=10^(-10),
+                      verbose=FALSE,\dots,na.action=na.rpart)
 
 \method{ada}{formula}(formula, data, \dots, subset, na.action=na.rpart)
 
@@ -76,11 +76,11 @@ Regression:  A Statistical View of Boosting}}.
 When using usage \sQuote{ada(x,y)}:
   x data can take the form data.frame or as.matrix.
   y data can take form data.frame, as.factor, as.matrix, as.array, or as.table.
-  missing values must be removed from the data prior to execution.
+  Missing values must be removed from the data prior to execution.
 
 When using usage \sQuote{ada(y~.)}:
   data must be in a data frame.  Response can have factor or numeric values.
-  missing values can be present in the descriptor data, whenever
+  Missing values can be present in the descriptor data, whenever
   na.action is set to any option other than na.pass.
     
 After the model is fit, \sQuote{ada} prints 
@@ -106,7 +106,7 @@ After the model is fit, \sQuote{ada} prints
 		 
 
   predict :  function to predict the response for any data set (train,
-  test, or validation)
+  test, or validation).
 
   plot    :  function to plot performance of the algorithm across boosting iterations.
                  Default plot is iteration number (x-axis) versus prediction error (y-axis) for

@@ -1,5 +1,5 @@
 "predict.ada" <-
-function(object,newdata=NULL,type=c("vector","probs","both","F"),n.iter=NULL,...){
+function(object,newdata,type=c("vector","probs","both","F"),n.iter=NULL,...){
   if(!inherits(object,"ada")){
     stop("Error:  Object is not of class ada")
   }
@@ -22,19 +22,22 @@ function(object,newdata=NULL,type=c("vector","probs","both","F"),n.iter=NULL,...
   }
   lev<-levels(as.factor(object$actual))
   const<-2
- 
+  
   f<-object$model$lossObj$predict.type
-  tmp=sapply(1:iter,function(i)f(f=object$model$trees[[i]],dat=newdata))
+  tmp = t(do.call(rbind,lapply(1:iter,
+        function(i) f(f = object$model$trees[[i]],dat = newdata))))
+  
   tmp=t(t(tmp)*object$model$alpha[1:iter])
   tmp<-apply(tmp,1,sum)
   fit<-as.vector(sign(tmp))
+  
 ##fit<-as.factor(fit)
   a1=(fit==0)
   if(sum(a1)>0)
     fit[a1]<-sample(c(-1,1),sum(a1),TRUE,c(.5,.5))
   ind<-as.numeric(factor(fit,levels=c(-1,1)))
   fit<-factor(lev[ind],levels=lev)
-	
+  
 ##attr(fit,"levels")<-lev
   if(type=="vector")
     return(fit)
